@@ -31,7 +31,7 @@ namespace RestaurantInfo
 
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(rb => rb.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 
             app.Run(async (context) =>
             {
