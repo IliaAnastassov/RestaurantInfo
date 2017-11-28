@@ -1,10 +1,15 @@
-﻿namespace RestaurantInfo.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using RestaurantInfo.Models;
+
+namespace RestaurantInfo.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        public IActionResult Index()
         {
-            return "Hello. You have reached the HomeController.";
+            var model = new Restaurant { Id = 1, Name = "Fat Hoe Burgers" };
+
+            return View(model);
         }
     }
 }
