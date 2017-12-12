@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace RestaurantInfo
+namespace RestaurantInfo.Services
 {
     public class Greeter : IGreeter
     {

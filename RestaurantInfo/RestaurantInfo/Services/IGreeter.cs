@@ -1,4 +1,4 @@
-﻿namespace RestaurantInfo
+﻿namespace RestaurantInfo.Services
 {
     public interface IGreeter
     {
