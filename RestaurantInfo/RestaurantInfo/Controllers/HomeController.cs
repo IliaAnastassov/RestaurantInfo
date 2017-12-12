@@ -1,13 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestaurantInfo.Models;
+using RestaurantInfo.Services;
 
 namespace RestaurantInfo.Controllers
 {
     public class HomeController : Controller
     {
+        private IRestaurantData _restaurantData;
+
+        public HomeController(IRestaurantData restaurantData)
+        {
+            _restaurantData = restaurantData;
+        }
+
         public IActionResult Index()
         {
-            var model = new Restaurant { Id = 1, Name = "Fat Hoe Burgers" };
+            var model = _restaurantData.GetAll();
 
             return View(model);
         }
