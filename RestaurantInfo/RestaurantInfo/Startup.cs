@@ -36,8 +36,8 @@ namespace RestaurantInfo
 
             app.Run(async (context) =>
             {
-                var greeting = greeter.GetGreeting();
-                await context.Response.WriteAsync(greeting);
+                var message = context.Response.ContentType = "text/plain";
+                await context.Response.WriteAsync(message);
             });
         }
     }
