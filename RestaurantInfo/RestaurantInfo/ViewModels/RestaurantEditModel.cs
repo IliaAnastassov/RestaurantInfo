@@ -1,9 +1,9 @@
-﻿namespace RestaurantInfo.Models
-{
-    public class Restaurant
-    {
-        public int Id { get; set; }
+﻿using RestaurantInfo.Models;
 
+namespace RestaurantInfo.ViewModels
+{
+    public class RestaurantEditModel
+    {
         public string Name { get; set; }
 
         public CuisineType Cuisine { get; set; }
