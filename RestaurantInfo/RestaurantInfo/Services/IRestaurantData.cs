@@ -6,9 +6,6 @@ namespace RestaurantInfo.Services
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetAll();
-
-        Restaurant Get(int id);
-
-        Restaurant Add(Restaurant restaurant);
+        object Get(int id);
     }
 }
