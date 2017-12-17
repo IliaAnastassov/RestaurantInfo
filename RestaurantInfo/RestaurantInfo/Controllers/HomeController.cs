@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestaurantInfo.Models;
 using RestaurantInfo.Services;
 using RestaurantInfo.ViewModels;
 
@@ -34,6 +35,24 @@ namespace RestaurantInfo.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Create(RestaurantEditModel model)
+        {
+            var newRestaurant = new Restaurant();
+            newRestaurant.Name = model.Name;
+            newRestaurant.Cuisine = model.Cuisine;
+
+            newRestaurant = _restaurantData.Add(newRestaurant);
+
+            return View(nameof(Details), newRestaurant);
         }
     }
 }
