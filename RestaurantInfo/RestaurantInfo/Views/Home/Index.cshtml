@@ -1,23 +1,26 @@
-﻿@model RestaurantInfo.ViewModels.HomeIndexViewModel
+﻿@model HomeIndexViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Restaurant Info</title>
-</head>
-<body>
-    <h1>@Model.CurrentMessage</h1>
-    <table>
-        @foreach (var restaurant in Model.Restaurants)
-        {
-            <tr>
-                <td>@restaurant.Id</td>
-                <td>@restaurant.Name</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@restaurant.Id">Details</a>
-                </td>
-            </tr>
-        }
-    </table>
-    <a asp-action="Create">Add Restaurant</a>
-</body>
-</html>
+@{
+    ViewBag.Title = "Restaurant Info";
+}
+
+<h1>Restaurants</h1>
+<table>
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>@restaurant.Id</td>
+            <td>@restaurant.Name</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@restaurant.Id">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-action="Create">Add Restaurant</a>
+
+@section footer {
+    <div>
+        @Model.CurrentMessage;
+    </div>
+}

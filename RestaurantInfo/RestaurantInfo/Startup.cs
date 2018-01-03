@@ -25,7 +25,7 @@ namespace RestaurantInfo
         {
             services.AddSingleton<IGreeter, Greeter>();
             services.AddDbContext<RestaurantInfoDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("RestaurantInfo")));
-            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            services.AddScoped<IRestaurantData, InMemoryRestaurantData>();
             services.AddMvc();
         }
 
