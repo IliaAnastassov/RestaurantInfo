@@ -1,0 +1,12 @@
+﻿@page
+@model RestaurantsModel
+
+@foreach (var restaurant in Model.Restaurants)
+{
+    <section>
+        <div>@restaurant.Id</div>
+        <div>@restaurant.Name</div>
+        <div>@restaurant.Cuisine</div>
+        <a asp-action="Details" asp-controller="Home" asp-route-id="@restaurant.Id">Details</a>
+    </section>
+}
