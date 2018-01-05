@@ -31,7 +31,7 @@ namespace RestaurantInfo.Controllers
 
             if (model == null)
             {
-                RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
 
             return View(model);
