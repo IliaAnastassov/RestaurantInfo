@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RestaurantInfo.Controllers;
 using RestaurantInfo.Models;
 using RestaurantInfo.Services;
 
@@ -23,7 +24,7 @@ namespace RestaurantInfo.Pages.Restaurants
 
             if (Restaurant == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
             }
 
             return Page();
@@ -34,7 +35,7 @@ namespace RestaurantInfo.Pages.Restaurants
             if (ModelState.IsValid)
             {
                 _restaurantData.Update(Restaurant);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
             }
 
             return Page();
