@@ -1,21 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestaurantInfo.Models;
 using RestaurantInfo.Services;
 
-namespace RestaurantInfo.Pages
+namespace RestaurantInfo.Pages.Restaurants
 {
-    public class RestaurantsModel : PageModel
+    public class ListModel : PageModel
     {
         private IRestaurantData _restaurantData;
 
         public IEnumerable<Restaurant> Restaurants { get; set; }
 
-        public RestaurantsModel(IRestaurantData restaurantData)
+        public ListModel(IRestaurantData restaurantData)
         {
             _restaurantData = restaurantData;
         }
