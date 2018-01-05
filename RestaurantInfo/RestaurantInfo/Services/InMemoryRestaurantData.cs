@@ -35,5 +35,18 @@ namespace RestaurantInfo.Services
 
             return restaurant;
         }
+
+        public Restaurant Update(Restaurant newRestaurant)
+        {
+            var oldRestaurant = Get(newRestaurant.Id);
+            if (oldRestaurant != null)
+            {
+                _restaurants.Remove(oldRestaurant);
+                newRestaurant.Id = oldRestaurant.Id;
+                _restaurants.Add(newRestaurant);
+            }
+
+            return newRestaurant;
+        }
     }
 }

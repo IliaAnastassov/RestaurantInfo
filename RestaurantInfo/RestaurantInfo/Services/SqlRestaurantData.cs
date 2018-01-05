@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using RestaurantInfo.Data;
 using RestaurantInfo.Models;
 
@@ -14,14 +15,6 @@ namespace RestaurantInfo.Services
             _context = context;
         }
 
-        public Restaurant Add(Restaurant restaurant)
-        {
-            _context.Add(restaurant);
-            _context.SaveChanges();
-
-            return restaurant;
-        }
-
         public Restaurant Get(int id)
         {
             return _context.Restaurants.FirstOrDefault(r => r.Id == id);
@@ -30,6 +23,22 @@ namespace RestaurantInfo.Services
         public IEnumerable<Restaurant> GetAll()
         {
             return _context.Restaurants.OrderBy(r => r.Name);
+        }
+
+        public Restaurant Add(Restaurant restaurant)
+        {
+            _context.Add(restaurant);
+            _context.SaveChanges();
+
+            return restaurant;
+        }
+
+        public Restaurant Update(Restaurant restaurant)
+        {
+            _context.Attach(restaurant).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return restaurant;
         }
     }
 }

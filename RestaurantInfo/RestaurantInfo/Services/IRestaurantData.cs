@@ -10,5 +10,7 @@ namespace RestaurantInfo.Services
         Restaurant Get(int id);
 
         Restaurant Add(Restaurant restaurant);
+
+        Restaurant Update(Restaurant restaurant);
     }
 }
