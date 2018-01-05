@@ -13,6 +13,7 @@
             <td>@restaurant.Name</td>
             <td>
                 <a asp-action="Details" asp-route-id="@restaurant.Id">Details</a>
+                <a asp-page="/Restaurants/Edit" asp-route-id="@restaurant.Id">Edit</a>
             </td>
         </tr>
     }
@@ -21,6 +22,6 @@
 
 @section footer {
     <div>
-        @Model.CurrentMessage;
+        @Model.CurrentMessage
     </div>
 }
