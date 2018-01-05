@@ -47,8 +47,7 @@ namespace RestaurantInfo
 
             app.Run(async (context) =>
             {
-                var message = "Not found";
-                context.Response.ContentType = "text/plain";
+                var message = context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync(message);
             });
         }
