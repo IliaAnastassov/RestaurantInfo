@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,13 @@ namespace RestaurantInfo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication()
+                    .AddFacebook(options =>
+                    {
+                        options.AppId = _configuration["FacebookAppId"];
+                        options.AppSecret = _configuration["FacebookAppSecret"];
+                    });
+
             services.AddSingleton<IGreeter, Greeter>();
             services.AddDbContext<RestaurantInfoDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("RestaurantInfo")));
             services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
@@ -41,7 +49,11 @@ namespace RestaurantInfo
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(rb => rb.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 
