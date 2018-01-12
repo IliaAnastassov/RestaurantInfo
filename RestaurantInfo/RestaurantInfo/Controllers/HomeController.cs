@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestaurantInfo.Models;
 using RestaurantInfo.Services;
 using RestaurantInfo.ViewModels;
@@ -38,6 +39,7 @@ namespace RestaurantInfo.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
