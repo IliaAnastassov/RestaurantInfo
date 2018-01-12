@@ -27,8 +27,7 @@ namespace RestaurantInfo
             services.AddAuthentication()
                     .AddFacebook(options =>
                     {
-                        options.AppId = _configuration["FacebookAppId"];
-                        options.AppSecret = _configuration["FacebookAppSecret"];
+                        _configuration.Bind("FacebookAuth", options);
                     });
 
             services.AddSingleton<IGreeter, Greeter>();
