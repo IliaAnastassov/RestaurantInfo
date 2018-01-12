@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
@@ -24,11 +26,15 @@ namespace RestaurantInfo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication()
-                    .AddFacebook(options =>
-                    {
-                        _configuration.Bind("FacebookAuth", options);
-                    });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
+            })
+            .AddFacebook(options =>
+            {
+                _configuration.Bind("FacebookAuth", options);
+            });
 
             services.AddSingleton<IGreeter, Greeter>();
             services.AddDbContext<RestaurantInfoDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("RestaurantInfo")));
