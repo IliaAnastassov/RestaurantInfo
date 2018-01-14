@@ -34,7 +34,8 @@ namespace RestaurantInfo
             .AddFacebook(options =>
             {
                 _configuration.Bind("FacebookAuth", options);
-            });
+            })
+            .AddCookie();
 
             services.AddSingleton<IGreeter, Greeter>();
             services.AddDbContext<RestaurantInfoDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("RestaurantInfo")));
