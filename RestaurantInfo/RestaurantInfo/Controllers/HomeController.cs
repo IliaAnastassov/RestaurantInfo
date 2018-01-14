@@ -6,6 +6,7 @@ using RestaurantInfo.ViewModels;
 
 namespace RestaurantInfo.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IRestaurantData _restaurantData;
@@ -17,6 +18,7 @@ namespace RestaurantInfo.Controllers
             _greeter = greeter;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = new HomeIndexViewModel();
@@ -39,7 +41,6 @@ namespace RestaurantInfo.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Create()
         {
             return View();
