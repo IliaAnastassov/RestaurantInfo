@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,16 +61,16 @@ namespace RestaurantInfo
 
             app.UseStaticFiles();
 
+            app.UseNodeModules(env.ContentRootPath);
+
             app.UseAuthentication();
 
-            app.UseMvc(rb => rb.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
+            app.UseMvc(ConfigureRoutes);
+        }
 
-            app.Run(async (context) =>
-            {
-                var message = "Not found";
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync(message);
-            });
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
